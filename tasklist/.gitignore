@@ -29,3 +29,15 @@ build/
 
 ### VS Code ###
 .vscode/
+.history
+
+### JMETER ###
+*jmeter.log
+
+### SASS ###
+.sass-cache
+
+### Node ###
+npm-debug.log
+
+
