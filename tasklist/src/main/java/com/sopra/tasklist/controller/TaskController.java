@@ -5,9 +5,11 @@ import com.sopra.tasklist.model.task.Task;
 import com.sopra.tasklist.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/task")
@@ -18,17 +20,17 @@ public class TaskController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Task add(@RequestBody Task task) {
+    public Mono<Task> add(@RequestBody Task task) {
         return taskRepository.save(task);
     }
 
     @GetMapping("/{title}")
-    public Task getOne(@PathVariable String title) {
+    public Mono<Task> getOne(@PathVariable String title) {
         return taskRepository.findByTitle(title);
     }
 
     @GetMapping("/all")
-    public List<Task> getAll() {
+    public Flux<Task> getAll() {
         return taskRepository.findAll();
     }
 }
