@@ -1,14 +1,27 @@
 package com.sopra.tasklist.repository;
 
 import com.sopra.tasklist.model.task.Task;
+import com.sopra.tasklist.model.task.TaskStatus;
 
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.repository.MongoRepository;
+
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
-public interface TaskRepository extends ReactiveMongoRepository<Task, ObjectId> {//extends MongoRepository<Task, String> {
+import java.time.LocalDate;
 
-    public Mono<Task> findByTitle(String title);
+public interface TaskRepository extends ReactiveMongoRepository<Task, ObjectId> {
 
+    Flux<Task> findByTitleIgnoreCase(String title);
+
+    Flux<Task> findByStatus(TaskStatus status);
+
+    Flux<Task> findByDescriptionIgnoreCaseContaining(String query);
+
+    Flux<Task> findByDeadline(LocalDate deadline);
+
+//    Flux<Task> findAllOrderByDeadlineDesc();
+
+//    Dit hebben we nodig voor pagination, maar dit is wel echt vaag
+//    Page<Task> findAll(PageRequest deadline);
 }

@@ -19,13 +19,6 @@ public class Task {
     private TaskStatus status;
     private LocalDate deadline;
 
-    public Task() {
-    }
-
-    public Task(String title) {
-        this.title = title;
-    }
-
     public ObjectId getId() {
         return id;
     }
@@ -38,8 +31,9 @@ public class Task {
         return title;
     }
 
-    public void setTitle(String title) {
+    public Task setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public String getDescription() {
