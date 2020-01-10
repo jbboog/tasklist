@@ -1,0 +1,20 @@
+<p>Add a new task</p>
+<!-- 
+<div class="form">
+
+    <label>Title:
+        <input [(ngModel)]="title"><br>
+    </label>
+
+    <button type="submit" (click)="onSubmit()">Add task</button>
+    <p>{{title}}</p>
+
+</div> -->
+
+<form #form='ngForm' (ngSubmit)='onSubmit(form)'>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" name="title" class="form-control" placeholder="name" [(ngModel)]='task.title' required #nameField='ngModel'>Enter a title
+        <br>
+        <button>Send</button>
+    </div>
